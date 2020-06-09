@@ -32,6 +32,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     async function getCareers(): Promise<void> {
+      setLoading(true)
       const response = await api.get('/careers/');
 
       const orderedItemsByDate = response.data.results.sort(
@@ -43,6 +44,7 @@ const Home: React.FC = () => {
       ).reverse();
 
       setCareers(orderedItemsByDate);
+      setLoading(false)
     }
 
     getCareers();
